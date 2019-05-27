@@ -1,4 +1,13 @@
 package impls.ferrari;
 
-public class FerrariEngine {
+import interfaces.Engine;
+
+public class FerrariEngine implements Engine {
+
+    @Override
+    public void start() {
+
+        System.out.println("Рычит, как Ферарри");
+
+    }
 }

@@ -1,4 +1,11 @@
 package impls.gelly;
 
-public class GellyEngine {
+import interfaces.Engine;
+
+public class GellyEngine implements Engine {
+
+    @Override
+    public void start() {
+        System.out.println("Тарахтит, как трактор");
+    }
 }
