@@ -8,6 +8,6 @@ public class GellyOil implements Oil {
 
     @Override
     public void refuel() {
-        System.out.println("Еще соточку проедим");
+        System.out.println("Жрет, как Джили. Еще соточку проедим");
     }
 }
