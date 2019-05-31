@@ -4,10 +4,10 @@ import interfaces.Car;
 import interfaces.Engine;
 import interfaces.Oil;
 import interfaces.Transmission;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-
 public class CreateCar implements Car {
 
     private Oil oil;

@@ -5,8 +5,27 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="createCar" class="impls.car.CreateCar">
+        <!--<constructor-arg ref="ferrariOil"/>-->
+        <!--<constructor-arg ref="ferrariEngine"/>-->
+        <!--<constructor-arg ref="ferrariTransmission"/>-->
+
+        <property name="oil" ref="gellyOil"/>
+        <property name="engine" ref="ferrariEngine"/>
+        <property name="transmission" ref="gellyTransmission"/>
+
+
 
     </bean>
+
+
+    <bean id="ferrariEngine" class="impls.ferrari.FerrariEngine"/>
+    <bean id="ferrariOil" class="impls.ferrari.FerrariOil"/>
+    <bean id="ferrariTransmission" class="impls.ferrari.FerrariTransmission"/>
+
+    <bean id="gellyEngine" class="impls.gelly.GellyEngine"/>
+    <bean id="gellyOil" class="impls.gelly.GellyOil"/>
+    <bean id="gellyTransmission" class="impls.gelly.GellyTransmission"/>
+
 
 
 </beans>
