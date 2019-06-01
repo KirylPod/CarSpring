@@ -3,23 +3,36 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
+           default-lazy-init="true"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="createCar" class="impls.car.CreateCar"
-          p:oil-ref="gellyOil"
-          p:engine-ref="ferrariEngine"
-          p:transmission-ref="gellyTransmission">
+    <bean id="createCarOld" class="impls.car.CreateCar">
+
+        <property name="oil" ref="gellyOil"/>
+        <property name="engine" ref="ferrariEngine"/>
+        <property name="transmission" ref="gellyTransmission"/>
+
+    </bean>
+
+
+    <bean id="createCar" class="impls.car.CreateCar">
 
         <constructor-arg value="Баклажан" index="0" type="String"/>
         <constructor-arg value="2008" index="1" type="int"/>
         <constructor-arg value="true" index="2" type="boolean"/>
 
 
+    </bean>
 
 
-        <!--<property name="oil" ref="gellyOil"/>-->
-        <!--<property name="engine" ref="ferrariEngine"/>-->
-        <!--<property name="transmission" ref="gellyTransmission"/>-->
+    <bean id="createCarNew" class="impls.car.CreateCar"
+          p:oil-ref="gellyOil"
+          p:engine-ref="ferrariEngine" scope="prototype"
+          p:transmission-ref="gellyTransmission">
+
+        <constructor-arg value="Баклажан" index="0" type="String"/>
+        <constructor-arg value="2008" index="1" type="int"/>
+        <constructor-arg value="true" index="2" type="boolean"/>
 
 
     </bean>
@@ -32,6 +45,7 @@
     <bean id="gellyEngine" class="impls.gelly.GellyEngine"/>
     <bean id="gellyOil" class="impls.gelly.GellyOil"/>
     <bean id="gellyTransmission" class="impls.gelly.GellyTransmission"/>
+    <bean class="main.MyBeanPostProcessor"/>
 
 
 </beans>

@@ -4,11 +4,13 @@ import interfaces.Car;
 import interfaces.Engine;
 import interfaces.Oil;
 import interfaces.Transmission;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class CreateCar implements Car {
+public class CreateCar implements Car, InitializingBean, DisposableBean {
 
     private Oil oil;
     private Engine engine;
@@ -104,5 +106,24 @@ public class CreateCar implements Car {
 
     public void setSoundEnabled(boolean soundEnabled) {
         this.soundEnabled = soundEnabled;
+    }
+
+    public void initObject(){
+        System.out.println("Init");
+    }
+
+    private void destroyObject() {
+        System.out.println("Destroy");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println(this + "- method destroy()");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println(this + "- method init()");
+
     }
 }
