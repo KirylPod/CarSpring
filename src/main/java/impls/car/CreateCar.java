@@ -1,12 +1,12 @@
 package impls.car;
 
+import abstracts.CarModel;
 import interfaces.Car;
 import interfaces.Engine;
 import interfaces.Oil;
 import interfaces.Transmission;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -16,12 +16,9 @@ public class CreateCar extends CarModel implements Car, InitializingBean, Dispos
     private int year;
     private boolean soundEnabled;
 
-    public CreateCar(){
-            }
+    public CreateCar(){    }
 
-    public CreateCar(Oil oil, Engine engine, Transmission transmission) {
-
-    }
+    public CreateCar(Oil oil, Engine engine, Transmission transmission) {    }
 
     public CreateCar(String color, int year, boolean soundEnabled) {
         this.color = color;
@@ -30,7 +27,7 @@ public class CreateCar extends CarModel implements Car, InitializingBean, Dispos
     }
 
     public CreateCar(Oil oil, Engine engine, Transmission transmission, String color, int year, boolean soundEnabled) {
-       ;
+        super(oil, engine, transmission);
         this.color = color;
         this.year = year;
         this.soundEnabled = soundEnabled;
@@ -38,7 +35,9 @@ public class CreateCar extends CarModel implements Car, InitializingBean, Dispos
 
     @Override
     public void go() {
-
+        getOil().refuel();
+        getEngine().start();
+        getTransmission().putGear();
         System.out.println("Цвет: " + color);
         System.out.println("Год выпуска: " + year);
         System.out.println("Выхлоп: " + soundEnabled);
@@ -50,7 +49,7 @@ public class CreateCar extends CarModel implements Car, InitializingBean, Dispos
         System.out.println("Торомози, стоит радар");
     }
 
-     public String getColor() {
+    public String getColor() {
         return color;
     }
 

@@ -25,16 +25,17 @@
         <constructor-arg value="2008" index="4" type="int"/>
         <constructor-arg value="true" index="5" type="boolean"/>
 
-       <replaced-method name="go" replacer="goReplacer"></replaced-method>
-
+       <!--<replaced-method name="go" replacer="goReplacer"></replaced-method>-->
 
     </bean>
-    <bean id="carModel" abstract="true" class="impls.car.CarModel">
+    <bean id="carModel" abstract="true" class="abstracts.CarModel">
         <constructor-arg ref="gellyOil" index="0"/>
         <constructor-arg ref="ferrariEngine" index="1"/>
         <constructor-arg ref="gellyTransmission" index="2"/>
 
     </bean>
+
+
     <bean class="main.MyBeanPostProcessor"/>
 
 
