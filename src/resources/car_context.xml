@@ -3,8 +3,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
-           default-lazy-init="true"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <import resource="ferrari_context.xml"/>
+    <import resource="gelly_context.xml"/>
+    <import resource="db_context.xml"/>
+    <bean id="goReplacer" class="impls.car.GoReplacer"/>
 
     <bean id="createCarOld" class="impls.car.CreateCar">
 
@@ -14,37 +19,22 @@
 
     </bean>
 
+    <bean id="createCarNew" parent="carModel" class="impls.car.CreateCar" scope="prototype">
 
-    <bean id="createCar" class="impls.car.CreateCar">
+        <constructor-arg value="Баклажан" index="3" type="String"/>
+        <constructor-arg value="2008" index="4" type="int"/>
+        <constructor-arg value="true" index="5" type="boolean"/>
 
-        <constructor-arg value="Баклажан" index="0" type="String"/>
-        <constructor-arg value="2008" index="1" type="int"/>
-        <constructor-arg value="true" index="2" type="boolean"/>
-
-
-    </bean>
-
-
-    <bean id="createCarNew" class="impls.car.CreateCar"
-          p:oil-ref="gellyOil"
-          p:engine-ref="ferrariEngine" scope="prototype"
-          p:transmission-ref="gellyTransmission">
-
-        <constructor-arg value="Баклажан" index="0" type="String"/>
-        <constructor-arg value="2008" index="1" type="int"/>
-        <constructor-arg value="true" index="2" type="boolean"/>
+       <replaced-method name="go" replacer="goReplacer"></replaced-method>
 
 
     </bean>
+    <bean id="carModel" abstract="true" class="impls.car.CarModel">
+        <constructor-arg ref="gellyOil" index="0"/>
+        <constructor-arg ref="ferrariEngine" index="1"/>
+        <constructor-arg ref="gellyTransmission" index="2"/>
 
-
-    <bean id="ferrariEngine" class="impls.ferrari.FerrariEngine"/>
-    <bean id="ferrariOil" class="impls.ferrari.FerrariOil"/>
-    <bean id="ferrariTransmission" class="impls.ferrari.FerrariTransmission"/>
-
-    <bean id="gellyEngine" class="impls.gelly.GellyEngine"/>
-    <bean id="gellyOil" class="impls.gelly.GellyOil"/>
-    <bean id="gellyTransmission" class="impls.gelly.GellyTransmission"/>
+    </bean>
     <bean class="main.MyBeanPostProcessor"/>
 
 
