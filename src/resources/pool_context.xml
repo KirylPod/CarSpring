@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <import resource="car_context.xml"/>
+    <bean id="carPool" class="pool.CarPool">
+        <constructor-arg name="carCollection">
+            <list>
+                <ref bean="createCarNew"/>
+                <bean class="impls.car.CreateCar" parent="carModel">
+
+                    <constructor-arg value="Blue" index="3" type="String"/>
+                    <constructor-arg value="2012" index="4" type="int"/>
+                    <constructor-arg value="false" index="5" type="boolean"/>
+
+                </bean>
+                <bean class="impls.car.CreateCar" parent="carModel">
+
+                    <constructor-arg value="Black" index="3" type="String"/>
+                    <constructor-arg value="2013" index="4" type="int"/>
+                    <constructor-arg value="true" index="5" type="boolean"/>
+
+                </bean>
+
+                <bean class="impls.car.CreateCar" parent="carModel">
+
+                    <constructor-arg value="Blue" index="3" type="String"/>
+                    <constructor-arg value="2015" index="4" type="int"/>
+                    <constructor-arg value="true" index="5" type="boolean"/>
+
+                </bean>
+            </list>
+        </constructor-arg>
+
+    </bean>
+
+    <bean id="carExclusivePool" class="pool.CarPool">
+        <constructor-arg name="carCollection"
+                         value="#{carPool.carCollection.?[color.toUpperCase() eq 'BLUE']}">
+
+        </constructor-arg>
+
+    </bean>
+
+
+    <!--<bean id="carPool" class="pool.CarPool">-->
+    <!--<constructor-arg name="carCollection">-->
+    <!--<util:map>-->
+    <!--<entry key="2008" value-ref="createCarNew"/>-->
+    <!--<entry key="2009" value-ref="createCarNew"/>-->
+    <!--<entry key="2012">-->
+    <!--<bean class="impls.car.CreateCar" parent="carModel">-->
+    <!--<constructor-arg value="Синий" index="3" type="String"/>-->
+    <!--<constructor-arg value="2012" index="4" type="int"/>-->
+    <!--<constructor-arg value="false" index="5" type="boolean"/>-->
+    <!--</bean>-->
+    <!--</entry>-->
+    <!--</util:map>-->
+    <!--</constructor-arg>-->
+    <!--</bean>-->
+</beans>

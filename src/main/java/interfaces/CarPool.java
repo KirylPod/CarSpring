@@ -5,6 +5,7 @@ import java.util.Map;
 
 public interface CarPool {
 
-  //  Collection<Car> getCarCollections();
-    Map<String, Car> getCarCollections();
+    Collection<Car> getCarCollection();
+
+ //   Map<String, Car> getCarCollections();
 }

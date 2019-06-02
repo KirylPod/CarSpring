@@ -27,8 +27,12 @@ public class Start {
 //        System.out.println("ferrari1" + ferrari1);
 //        System.out.println("ferrari2" + ferrari2);
 //        System.out.println("ferrari3" + ferrari3);
-        CarPool carPool = (CarPool)context.getBean("carPool");
-        carPool.action();
+
+//        CarPool carPool = (CarPool)context.getBean("carPool");
+//        carPool.action();
+
+        CarPool carExclusivePool = (CarPool)context.getBean("carExclusivePool");
+        carExclusivePool.beginBuild();
     }
 
 

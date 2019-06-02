@@ -5,40 +5,12 @@
        default-lazy-init="true">
 
     <import resource="car_context.xml"/>
+    <import resource="pool_context.xml"/>
+
     <bean id="ferrariConveyor" class="conveyor.FerrariConveyor">
         <lookup-method name="createCar" bean="createCarNew"/>
 
     </bean>
 
-    <!--<bean id="carPool" class="pool.CarPool">-->
-    <!--<property name="carCollection">-->
-    <!--<list>-->
-    <!--<ref bean="createCarNew"/>-->
-    <!--<bean class="impls.car.CreateCar" parent="carModel">-->
-
-    <!--<constructor-arg value="Синий" index="3" type="String"/>-->
-    <!--<constructor-arg value="2012" index="4" type="int"/>-->
-    <!--<constructor-arg value="false" index="5" type="boolean"/>-->
-
-    <!--</bean>-->
-    <!--</list>-->
-    <!--</property>-->
-
-    <!--</bean>-->
-    <bean id="carPool" class="pool.CarPool">
-        <constructor-arg name="carCollection">
-        <util:map>
-        <entry key="2008" value-ref="createCarNew"/>
-        <entry key="2009" value-ref="createCarNew"/>
-        <entry key="2012">
-            <bean class="impls.car.CreateCar" parent="carModel">
-                <constructor-arg value="Синий" index="3" type="String"/>
-                <constructor-arg value="2012" index="4" type="int"/>
-                <constructor-arg value="false" index="5" type="boolean"/>
-            </bean>
-        </entry>
-        </util:map>
-        </constructor-arg>
-    </bean>
 
 </beans>

@@ -41,6 +41,7 @@ public class CreateCar extends CarModel implements Car, InitializingBean, Dispos
         System.out.println("Цвет: " + color);
         System.out.println("Год выпуска: " + year);
         System.out.println("Выхлоп: " + soundEnabled);
+        System.out.println("----------------------------------");
 
     }
 
@@ -88,7 +89,7 @@ public class CreateCar extends CarModel implements Car, InitializingBean, Dispos
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println(this + "- method init()");
+ //       System.out.println(this + "- method init()");
 
     }
 }
